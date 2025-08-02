@@ -16,3 +16,8 @@ resource "azurerm_resource_group" "Stest_rg" {
   name     = "Sumit_RG_terraform1234"
   location = "West US"
 }
+
+resource "azurerm_resource_group" "Stest_rg1" {
+  name     = "Sumit_RG_terraform5678"
+  location = "West US"
+}
