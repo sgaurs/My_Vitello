@@ -12,7 +12,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "Stest_rg" {
+resource "azurerm_resource_group" "testrg" {
   name     = "Sumit_RG_terraform1234"
   location = "West US"
 }
