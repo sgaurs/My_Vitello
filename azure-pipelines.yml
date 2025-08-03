@@ -5,7 +5,7 @@ trigger: none
 pool: My_Running_Agent
 
 steps:
-  - 
+
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
