@@ -1,5 +1,7 @@
 # meri pehli pipeline
 
+name: MyAwesomePipeline
+
 trigger: none
 
 pool: My_Running_Agent
