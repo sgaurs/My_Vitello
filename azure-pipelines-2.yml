@@ -1,0 +1,45 @@
+# meri pehli pipeline
+
+name: MyAwesomePipeline
+
+trigger: none
+
+pool: My_Running_Agent
+
+steps:
+
+- task: TerraformInstaller@1
+  displayName: Terraform istall krna h
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  displayName: Terraform initialize krna h
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'My_first_Service_Principal12_conn'
+    backendAzureRmStorageAccountName: 'sumitvatsstorage'
+    backendAzureRmContainerName: 'sumitstoragecontainer'
+    backendAzureRmKey: 'sumit.tfstate'
+
+- task: TerraformTask@5
+  displayName: Terraform validate krna h
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+
+- task: TerraformTask@5
+  displayName: Terraform plan krna h
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'My_first_Service_Principal12_conn'
+
+- task: TerraformTask@5
+  displayName: Terraform apply chla de
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '--auto-approve'
+    environmentServiceNameAzureRM: 'My_first_Service_Principal12_conn'
