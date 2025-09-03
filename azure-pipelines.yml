@@ -1,66 +1,13 @@
-# meri pehli pipeline
-
-name: MyAwesomePipeline
-
 trigger: none
 
-parameters:
-  - name: runInit
-    type: boolean
-    default: true
+pool: SumitAgentPool
 
-  - name: runValidate
-    type: boolean
-    default: true
-
-  - name: runPlan
-    type: boolean
-    default: true
-
-  - name: runApply
-    type: boolean
-    default: true
-
-pool: My_Running_Agent
-
-steps:
-
-- task: TerraformInstaller@1
-  displayName: Terraform istall krna h
-  inputs:
-    terraformVersion: 'latest'
-
-- task: TerraformTask@5
-  displayName: Terraform initialize krna h
-  condition: eq('${{ parameters.runInit }}', true)
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'My_first_Service_Principal12_conn'
-    backendAzureRmStorageAccountName: 'sumitvatsstorage'
-    backendAzureRmContainerName: 'sumitstoragecontainer'
-    backendAzureRmKey: 'sumit.tfstate'
-
-- task: TerraformTask@5
-  displayName: Terraform validate krna h
-  condition: eq('${{ parameters.runValidate }}', true)
-  inputs:
-    provider: 'azurerm'
-    command: 'validate'
-
-- task: TerraformTask@5
-  displayName: Terraform plan krna h
-  condition: eq('${{ parameters.runPlan }}', true)
-  inputs:
-    provider: 'azurerm'
-    command: 'plan'
-    environmentServiceNameAzureRM: 'My_first_Service_Principal12_conn'
-
-- task: TerraformTask@5
-  displayName: Terraform apply chla de
-  condition: eq('${{ parameters.runApply }}', true)
-  inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    commandOptions: '--auto-approve'
-    environmentServiceNameAzureRM: 'My_first_Service_Principal12_conn'
+stages:
+  - stage: Greet
+    displayName: 'Greeting Stage'
+    jobs:
+      - job: SayHello
+        displayName: 'Say Hello Job'
+        steps:
+          - script: echo "Hello, World!"
+            displayName: 'Print Hello World'
