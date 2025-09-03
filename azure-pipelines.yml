@@ -3,11 +3,11 @@ trigger: none
 pool: SumitAgentPool
 
 stages:
-  - stage: Greet
-    displayName: 'Greeting Stage'
+  - stage: A
     jobs:
-      - job: SayHello
-        displayName: 'Say Hello Job'
+      - job: Greeting_jobs
+        displayName: Hello Babuuu
         steps:
-          - script: echo "Hello, World!"
-            displayName: 'Print Hello World'
+        - task: CmdLine@2
+          inputs:
+            script: 'echo Hello Babuuu, Gd Mng !!'
